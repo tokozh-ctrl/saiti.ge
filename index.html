@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <!-- აიქონი ბრაუზერის ჩანართისთვის (ლოგო) -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- საიტის სახელი, რომელიც ბრაუზერის ჩანართზე გამოჩნდება -->
+    <title>კონტეინერ ჰაუსი | Container Homes</title>
+    
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 30px; text-align: center; }
+        /* ახალი სტილი საიტის მთავარი სახელისა და ლოგოსთვის */
+        .header-area { margin-bottom: 20px; }
+        .site-logo { width: 80px; height: auto; margin-bottom: 10px; }
+        .site-title { color: #17252a; margin: 0; font-size: 28px; font-weight: bold; }
+        
+        .container { background: white; padding: 20px; border-radius: 10px; max-width: 500px; margin: 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        select, button { padding: 10px; margin: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; width: 80%; }
+        button { background-color: #2b7a78; color: white; cursor: pointer; border: none; font-weight: bold; }
+        button:hover { background-color: #17252a; }
+        #result { margin-top: 20px; font-size: 18px; text-align: left; padding: 15px; background: #e3f2fd; border-radius: 5px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- საიტის სახელი და ლოგოს ბლოკი -->
+    <div class="header-area">
+        <img src="logo.png" alt="ლოგო" class="site-logo">
+        <h1 class="site-title">CONTAINER HOUSES GEORGIA</h1>
+    </div>
+
+    <div class="container">
+        <h2>🚢 კონტეინერის სახლის კალკულატორი</h2>
+        <p>აირჩიეთ საზღვაო კონტეინერის ზომა:</p>
+        
+        <select id="sizeSelect">
+            <option value="20">20 ფუტიანი კონტეინერი (სტანდარტული)</option>
+            <option value="40">40 ფუტიანი კონტეინერი (დიდი)</option>
+        </select>
+
+        <button id="calcBtn">გამოთვალე მონაცემები</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
