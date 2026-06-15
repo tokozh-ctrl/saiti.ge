@@ -2,6 +2,7 @@
 <html lang="ka">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- აიქონი ბრაუზერის ჩანართისთვის (ლოგო) -->
     <link rel="icon" type="image/png" href="logo.png">
     
@@ -9,20 +10,51 @@
     <title>კონტეინერ ჰაუსი | Container Homes</title>
     
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; padding: 30px; text-align: center; }
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; text-align: center; color: #17252a; }
+        
+        /* მენიუს სტილი */
+        .navbar { background-color: #17252a; padding: 12px; margin: -20px -20px 30px -20px; display: flex; justify-content: center; gap: 20px; }
+        .navbar a { color: white; text-decoration: none; font-weight: bold; font-size: 16px; }
+        .navbar a:hover { color: #3aafa9; }
+
         /* ახალი სტილი საიტის მთავარი სახელისა და ლოგოსთვის */
         .header-area { margin-bottom: 20px; }
         .site-logo { width: 80px; height: auto; margin-bottom: 10px; }
         .site-title { color: #17252a; margin: 0; font-size: 28px; font-weight: bold; }
         
-        .container { background: white; padding: 20px; border-radius: 10px; max-width: 500px; margin: 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        select, button { padding: 10px; margin: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; width: 80%; }
-        button { background-color: #2b7a78; color: white; cursor: pointer; border: none; font-weight: bold; }
+        /* კონტეინერების ბლოკები */
+        .container { background: white; padding: 25px; border-radius: 10px; max-width: 500px; margin: 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .checkbox-group { text-align: left; width: 80%; margin: 15px auto; }
+        .checkbox-item { margin: 8px 0; display: flex; align-items: center; gap: 10px; font-size: 15px; }
+        
+        select, button { padding: 12px; margin: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; width: 84%; box-sizing: border-box; }
+        label { font-weight: bold; display: block; margin-top: 10px; text-align: left; width: 84%; margin-left: auto; margin-right: auto; }
+        
+        button { background-color: #2b7a78; color: white; cursor: pointer; border: none; font-weight: bold; transition: 0.2s; }
         button:hover { background-color: #17252a; }
-        #result { margin-top: 20px; font-size: 18px; text-align: left; padding: 15px; background: #e3f2fd; border-radius: 5px; display: none; }
+        
+        /* შედეგის ბლოკი */
+        #result { margin-top: 20px; font-size: 17px; text-align: left; padding: 15px; background: #e3f2fd; border-left: 5px solid #2b7a78; border-radius: 5px; display: none; line-height: 1.6; }
+        
+        /* ახალი სექციები */
+        .section-box { background: white; padding: 30px; border-radius: 10px; max-width: 600px; margin: 40px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.05); text-align: center; }
+        .section-box h3 { margin-top: 0; color: #17252a; font-size: 24px; border-bottom: 2px solid #3aafa9; padding-bottom: 8px; display: inline-block; }
+        .section-box p { color: #3a3a3a; font-size: 16px; line-height: 1.6; }
+        
+        /* კონტაქტის ღილაკები */
+        .phone-link { display: block; font-size: 24px; color: #2b7a78; text-decoration: none; font-weight: bold; margin: 15px 0; }
+        .whatsapp-btn { background-color: #25D366; color: white; text-decoration: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; display: inline-block; margin-top: 10px; transition: 0.2s; }
+        .whatsapp-btn:hover { background-color: #128C7E; }
     </style>
 </head>
 <body>
+
+    <!-- საიტის მენიუ -->
+    <div class="navbar">
+        <a href="#calc-section">კალკულატორი</a>
+        <a href="#about-section">ჩვენ შესახებ</a>
+        <a href="#contact-section">კონტაქტი</a>
+    </div>
 
     <!-- საიტის სახელი და ლოგოს ბლოკი -->
     <div class="header-area">
@@ -30,18 +62,65 @@
         <h1 class="site-title">CONTAINER HOUSES GEORGIA</h1>
     </div>
 
-    <div class="container">
+    <!-- კალკულატორი -->
+    <div id="calc-section" class="container">
         <h2>🚢 კონტეინერის სახლის კალკულატორი</h2>
-        <p>აირჩიეთ საზღვაო კონტეინერის ზომა:</p>
         
+        <label for="sizeSelect">📐 აირჩიეთ კონტეინერის ზომა:</label>
         <select id="sizeSelect">
-            <option value="20">20 ფუტიანი კონტეინერი (სტანდარტული)</option>
+            <option value="10">10 ფუტიანი კონტეინერი (მცირე სივრცე / ოფისი)</option>
+            <option value="20" selected>20 ფუტიანი კონტეინერი (სტანდარტული)</option>
             <option value="40">40 ფუტიანი კონტეინერი (დიდი)</option>
+            <option value="40hc">40 ფუტიანი High Cube (უფრო მაღალი ჭერით)</option>
         </select>
+
+        <label for="colorSelect">🎨 აირჩიეთ ექსტერიერის ფერი:</label>
+        <select id="colorSelect">
+            <option value="anthracite">ანტრაციტი (მუქი ნაცრისფერი)</option>
+            <option value="black">შავი მქრქალი</option>
+            <option value="white">თეთრი კლასიკური</option>
+            <option value="wood">ხისფერი ეფექტი (პრემიუმი)</option>
+        </select>
+
+        <label>🛠️ დამატებითი კომპლექტაცია:</label>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="insulationCheck">
+                <label style="display:inline; margin:0;" for="insulationCheck">🔥 თბოიზოლაციის გაძლიერება (+ $500)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="windowsCheck">
+                <label style="display:inline; margin:0;" for="windowsCheck">🪟 პანორამული ვიტრაჟები (+ $1,200)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="foundationCheck">
+                <label style="display:inline; margin:0;" for="foundationCheck">🏗️ საძირკვლის მომზადება (+ $800)</label>
+            </div>
+        </div>
 
         <button id="calcBtn">გამოთვალე მონაცემები</button>
 
         <div id="result"></div>
+    </div>
+
+    <!-- ჩვენ შესახებ -->
+    <div id="about-section" class="section-box">
+        <h3>🏠 ჩვენ შესახებ</h3>
+        <p>
+            მოგესალმებით! ჩვენი კომპანია ახდენს უმაღლესი ხარისხის საზღვაო კონტეინერების მოდიფიცირებას თანამედროვე საცხოვრებელ სახლებად, კოტეჯებად და ოფისებად. ჩვენ ვქმნით სწრაფ, მობილურ და ეკონომიურ ალტერნატივას ტრადიციული მშენებლობის ნაცვლად, რაც გაძლევთ საშუალებას მიიღოთ მზა სახლი მინიმალურ დროში.
+        </p>
+    </div>
+
+    <!-- კონტაქტი -->
+    <div id="contact-section" class="section-box" style="background-color: #17252a; color: white;">
+        <h3 style="color: white; border-bottom-color: #3aafa9;">📞 კონტაქტი</h3>
+        <p style="color: #def2f1;">ნებისმიერი კითხვის შემთხვევაში დაგვიკავშირდით ან მოგვწერეთ:</p>
+        
+        <a href="tel:+995557666211" class="phone-link" style="color: #3aafa9;">📱 +995 557 666 211</a>
+        
+        <a href="https://wa.me" target="_blank" class="whatsapp-btn">
+            💬 მოგვწერეთ WhatsApp-ზე
+        </a>
     </div>
 
     <script src="app.js"></script>
