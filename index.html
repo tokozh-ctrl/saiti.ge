@@ -3,162 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>კონტეინერების პლატფორმა & კონფიგურატორი</title>
+    <title>კონტეინერების სერვისი & კალკულატორი</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ანიმაციური ფონი -->
+    <!-- მოძრავი კოსმოსური ნეონური ტალღები ფონად -->
     <div class="space-waves">
         <div class="wave wave1"></div>
         <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
     </div>
 
-    <!-- მთავარი კონტენტი -->
-    <div class="container">
+    <!-- კოსმოსში მფრინავი ფერადი კონტეინერები -->
+    <div class="flying-container fc1"></div>
+    <div class="flying-container fc2"></div>
+    <div class="flying-container fc3"></div>
+    <div class="flying-container fc4"></div>
+
+    <!-- საიტის მთავარი კონტენტი -->
+    <div class="wrapper">
         
-        <!-- ================= მთავარი გვერდი ================= -->
-        <div id="main-view">
-            <h1 class="main-title">🚀 აირჩიე კონტეინერი მოდიფიკაციისთვის</h1>
-            
-            <!-- ვიზუალური კონტეინერების არჩევანი -->
-            <div class="container-grid">
-                <div class="container-box box-red" onclick="openConfigurator('10', 'წითელი კლასიკური', '#b03a2e')">
-                    <div class="box-inner">
-                        <h3>10 ფუტიანი კონტეინერი</h3>
-                        <p>მცირე დაცვის ჯიხური, მინი-ოფისი ან საცავი</p>
-                        <span class="click-badge">დააკლიკე ასარჩევად 🛠️</span>
-                    </div>
-                </div>
-
-                <div class="container-box box-blue" onclick="openConfigurator('20', 'ლურჯი პრემიუმი', '#1a5276')">
-                    <div class="box-inner">
-                        <h3>20 ფუტიანი კონტეინერი</h3>
-                        <p>მცირე აგარაკი, კოტეჯი, საოფისე სივრცე ან კაფე</p>
-                        <span class="click-badge">დააკლიკე ასარჩევად 🛠️</span>
-                    </div>
-                </div>
-
-                <div class="container-box box-green" onclick="openConfigurator('40', 'მწვანე ეკო', '#1e8449')">
-                    <div class="box-inner">
-                        <h3>40 ფუტიანი კონტეინერი</h3>
-                        <p>სრულფასოვანი საცხოვრებელი სახლი საძინებლით</p>
-                        <span class="click-badge">დააკლიკე ასარჩევად 🛠️</span>
-                    </div>
-                </div>
-
-                <div class="container-box box-orange" onclick="openConfigurator('40hc', 'ნარინჯისფერი High Cube', '#d35400')">
-                    <div class="box-inner">
-                        <h3>40 HC პრემიუმ კონტეინერი</h3>
-                        <p>მაღალჭერიანი პრემიუმ საცხოვრებელი სახლი</p>
-                        <span class="click-badge">დააკლიკე ასარჩევად 🛠️</span>
-                    </div>
-                </div>
+        <!-- მარცხენა მხარე: ინფორმაცია, რემონტი და კონტაქტი -->
+        <div class="info-sidebar">
+            <div class="card about-card">
+                <h3>ℹ️ ჩვენს შესახებ</h3>
+                <p>ჩვენ გთავაზობთ უმაღლესი ხარისხის საზღვაო კონტეინერების მოდიფიცირებას, საცხოვრებელ სახლებად გარდაქმნასა და ტრანსპორტირებას მთელი ქვეყნის მასშტაბით.</p>
             </div>
 
-            <!-- საინფორმაციო ბლოკები ქვემოთ -->
-            <div class="info-row">
-                <div class="card">
-                    <h3>ℹ️ ჩვენს შესახებ</h3>
-                    <p>ჩვენ გთავაზობთ უმაღლესი ხარისხის საზღვაო კონტეინერების მოდიფიცირებას და საცხოვრებელ სახლებად გარდაქმნას.</p>
-                </div>
-                <div class="card">
-                    <h3>🛠️ კონტეინერების რემონტი</h3>
-                    <p>ნებისმიერი სირთულის სარემონტო სამუშაოები: ჟანგის დამუშავება, შეღებვა და კონსტრუქციის გამაგრება.</p>
-                </div>
-                <div class="card">
-                    <h3>📞 კონტაქტი</h3>
-                    <p>დაგვიკავშირდით ნომერზე: <a href="tel:557666211" class="phone-num">557 666 211</a></p>
-                </div>
+            <div class="card repair-card">
+                <h3>🛠️ კონტეინერების რემონტი</h3>
+                <p>გთავაზობთ ნებისმიერი სირთულის სარემონტო სამუშაოებს: კონსტრუქციის გამაგრება, ჟანგის დამუშავება, შეღებვა, გადახურვა და თბოიზოლაციის მოწყობა.</p>
+            </div>
+
+            <div class="card contact-card">
+                <h3>📞 კონტაქტი</h3>
+                <p>დაგვიკავშირდით ნებისმიერ დროს ტელეფონზე:</p>
+                <a href="tel:557666211" class="phone-link">557 666 211</a>
             </div>
         </div>
 
-        <!-- ================= მოდიფიკაციის გვერდი (თავიდან დამალულია) ================= -->
-        <div id="configurator-view" style="display: none;">
-            <button class="back-btn" onclick="backToMain()">← უკან დაბრუნება</button>
+        <!-- მარჯვენა მხარე: კალკულატორი (ზუსტად ის ძველი და მარტივი) -->
+        <div class="calculator-container">
+            <h2>🏡 ფასის კალკულატორი</h2>
             
-            <div class="config-wrapper">
-                <!-- მარცხენა მხარე: არჩეული კონტეინერის ვიზუალიზაცია -->
-                <div class="preview-side">
-                    <div id="preview-box" class="live-preview">
-                        <div class="stripes"></div>
-                        <h2 id="preview-title">კონტეინერი</h2>
-                    </div>
-                    <p class="preview-hint">* ფერი და კომპონენტები იცვლება რეალურ დროში</p>
-                </div>
-
-                <!-- მარჯვენა მხარე: მოდიფიკაციის ჩამონათვალი -->
-                <div class="options-side">
-                    <h2>🛠️ კონტეინერის მოდიფიკაცია</h2>
-                    
-                    <!-- ფერის გადაღებვა -->
-                    <div class="config-group">
-                        <label>🎨 შეცვალე შეღებვის ფერი:</label>
-                        <div class="color-picker-grid">
-                            <span class="color-dot dot-red" onclick="changeLiveColor('#b03a2e', 'წითელი კლასიკური')"></span>
-                            <span class="color-dot dot-blue" onclick="changeLiveColor('#1a5276', 'ლურჯი პრემიუმი')"></span>
-                            <span class="color-dot dot-green" onclick="changeLiveColor('#1e8449', 'მწვანე ეკო')"></span>
-                            <span class="color-dot dot-orange" onclick="changeLiveColor('#d35400', 'ნარინჯისფერი ნეონი')"></span>
-                            <span class="color-dot dot-anthracite" onclick="changeLiveColor('#2c3e50', 'ანტრაციტი')"></span>
-                            <span class="color-dot dot-black" onclick="changeLiveColor('#111111', 'შავი მქრქალი')"></span>
-                        </div>
-                        <p class="selected-color-text">არჩეული ფერი: <span id="current-color-name">სტანდარტული</span></p>
-                    </div>
-
-                    <!-- რა შეგვიძლია დავამონტაჟოთ (ჩამონათვალი) -->
-                    <div class="config-group">
-                        <label>⚙️ რა გსურთ რომ დავამონტაჟოთ კონტეინერზე?</label>
-                        
-                        <div class="addon-item">
-                            <input type="checkbox" id="insulation" onchange="updateLivePrice()">
-                            <div class="addon-details">
-                                <strong>🔥 უმაღლესი ხარისხის თბოიზოლაცია (+$500)</strong>
-                                <p>კედლებისა და ჭერის შეფუთვა ISO-სტანდარტის ქაფით (ზამთარში სითბოსთვის).</p>
-                            </div>
-                        </div>
-
-                        <div class="addon-item">
-                            <input type="checkbox" id="windows" onchange="updateLivePrice()">
-                            <div class="addon-details">
-                                <strong>🪟 პანორამული კარ-ფანჯარა (+$1,200)</strong>
-                                <p>ორმაგი მინაპაკეტით მეტალო-პლასტმასის ან ალუმინის ვიტრაჟების ჩასმა.</p>
-                            </div>
-                        </div>
-
-                        <div class="addon-item">
-                            <input type="checkbox" id="foundation" onchange="updateLivePrice()">
-                            <div class="addon-details">
-                                <strong>🧱 ბლოკური საძირკველი (+$800)</strong>
-                                <p>ადგილზე ბეტონის წერტილოვანი საძირკვლის და ბალიშების მომზადება.</p>
-                            </div>
-                        </div>
-
-                        <div class="addon-item">
-                            <input type="checkbox" id="roofing" onchange="updateLivePrice()">
-                            <div class="addon-details">
-                                <strong>🏠 დამატებითი გადახურვა / სახურავი (+$950)</strong>
-                                <p>თუნუქის ან პროფნასტილის ორფერდა სახურავი წვიმისგან დასაცავად.</p>
-                            </div>
-                        </div>
-
-                        <div class="addon-item">
-                            <input type="checkbox" id="electrical" onchange="updateLivePrice()">
-                            <div class="addon-details">
-                                <strong>⚡ სრული ელექტროგაყვანილობა (+$450)</strong>
-                                <p>ევროპული სტანდარტის კაბელები, ავტომატების ყუთი, როზეტები და განათებები.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ჯამური ფასი და შეკვეთა -->
-                    <div class="price-box">
-                        <span class="price-label">ჯამური სავარაუდო ფასი:</span>
-                        <span id="live-total-price" class="price-value">$0</span>
-                        <button class="order-btn" onclick="orderContainer()">მოითხოვე ეს კონფიგურაცია 📞</button>
-                    </div>
-
-                </div>
+            <div class="form-group">
+                <label for="sizeSelect">შეარჩიეთ კონტეინერის ზომა:</label>
+                <select id="sizeSelect">
+                    <option value="10">10 ფუტიანი (მცირე ოფისი / საცავი)</option>
+                    <option value="20">20 ფუტიანი (მცირე აგარაკი / კაფე)</option>
+                    <option value="40">40 ფუტიანი (საცხოვრებელი სახლი)</option>
+                    <option value="40hc">40 ფუტიანი High Cube (პრემიუმი)</option>
+                </select>
             </div>
+
+            <div class="form-group">
+                <label for="colorSelect">შეარჩიეთ ფერი:</label>
+                <select id="colorSelect">
+                    <option value="anthracite">ანტრაციტი (მუქი ნაცრისფერი)</option>
+                    <option value="black">შავი მქრქალი</option>
+                    <option value="white">თეთრი კლასიკური</option>
+                    <option value="wood">ხისფერი ეფექტი</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="insulationCheck"> თბოიზოლაცია (+$500)</label>
+                <label><input type="checkbox" id="windowsCheck"> კარ-ფანჯარა (+$1,200)</label>
+                <label><input type="checkbox" id="foundationCheck"> საძირკველი (+$800)</label>
+            </div>
+
+            <button id="calcBtn">გამოთვლა 📊</button>
+            <div id="result" style="display: none;"></div>
         </div>
 
     </div>
