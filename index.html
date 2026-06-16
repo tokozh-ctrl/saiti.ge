@@ -27,10 +27,10 @@
         </div>
     </header>
 
-    <!-- ფანჯრების ორიგინალური სამუშაო მაგიდა (Desktop Grid) -->
+    <!-- ფანჯრების ორიგინალური სამუშაო მაგიდა -->
     <main class="desktop-wrapper">
         
-        <!-- ფანჯარა 1: ჩვენს შესახებ (იასამნისფერი ნეონის ჩარჩო) -->
+        <!-- ფანჯარა 1: ჩვენს შესახებ -->
         <section class="window-box win-about">
             <div class="win-header">
                 <span class="win-dot"></span>
@@ -41,7 +41,7 @@
             </div>
         </section>
 
-        <!-- ფანჯარა 2: რემონტი (ყვითელი/ნარინჯისფერი ნეონის ჩარჩო) -->
+        <!-- ფანჯარა 2: რემონტი -->
         <section class="window-box win-repair">
             <div class="win-header">
                 <span class="win-dot"></span>
@@ -52,7 +52,7 @@
             </div>
         </section>
 
-        <!-- ფანჯარა 3: კალკულატორი (მწვანე ნეონის ჩარჩო - ყველაზე დიდი) -->
+        <!-- ფანჯარა 3: კალკულატორი -->
         <section class="window-box win-calc">
             <div class="win-header">
                 <span class="win-dot"></span>
@@ -83,14 +83,19 @@
                     <label><input type="checkbox" id="insulationCheck"> თბოიზოლაცია (+$500)</label>
                     <label><input type="checkbox" id="windowsCheck"> კარ-ფანჯარა (+$1,200)</label>
                     <label><input type="checkbox" id="foundationCheck"> საძირკველი (+$800)</label>
+                    <label><input type="checkbox" id="interiorCheck"> შიდა მოპირკეთება (+$1,500)</label>
+                    <label><input type="checkbox" id="climatCheck"> გათბობა-გაგრილება (+$600)</label>
+                    <label><input type="checkbox" id="bathroomCheck"> სველი წერტილი / აბაზანა (+$1,100)</label>
                 </div>
 
                 <button id="calcBtn">გამოთვლა 🚀</button>
-                <div id="result" style="display: none;"></div>
+                
+                <!-- ახალი ნეონური შედეგის ბლოკი -->
+                <div id="result" class="neon-result-box" style="display: none;"></div>
             </div>
         </section>
 
-        <!-- ფანჯარა 4: კონტაქტი (ლურჯი ნეონის ჩარჩო) -->
+        <!-- ფანჯარა 4: კონტაქტი -->
         <section class="window-box win-contact">
             <div class="win-header">
                 <span class="win-dot"></span>

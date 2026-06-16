@@ -1,9 +1,15 @@
 let calcButton = document.getElementById("calcBtn");
 let sizeSelect = document.getElementById("sizeSelect");
 let colorSelect = document.getElementById("colorSelect");
+
+// ჩეკბოქსები
 let insulationCheck = document.getElementById("insulationCheck");
 let windowsCheck = document.getElementById("windowsCheck");
 let foundationCheck = document.getElementById("foundationCheck");
+let interiorCheck = document.getElementById("interiorCheck");
+let climatCheck = document.getElementById("climatCheck");
+let bathroomCheck = document.getElementById("bathroomCheck");
+
 let resultDiv = document.getElementById("result");
 
 if (calcButton) {
@@ -35,18 +41,26 @@ if (calcButton) {
         else if (chosenColor === "white") colorName = "თეთრი კლასიკური";
         else if (chosenColor === "wood") { basePrice += 400; colorName = "ხისფერი ეფექტი (პრემიუმი, +$400)"; }
 
+        // ფასების მიმატება
         if (insulationCheck.checked) basePrice += 500;
         if (windowsCheck.checked) basePrice += 1200;
         if (foundationCheck.checked) basePrice += 800;
+        if (interiorCheck.checked) basePrice += 1500;
+        if (climatCheck.checked) basePrice += 600;
+        if (bathroomCheck.checked) basePrice += 1100;
 
+        // გამოსატანი ნეონური ტექსტი
         resultDiv.style.display = "block";
         resultDiv.innerHTML = `
-            <strong style="color:#111; font-size:16px;">📊 გამოთვლის შედეგები:</strong><br><br>
+            <span class="result-title">📊 გამოთვლის შედეგები:</span>
             <strong>📐 ფართობი:</strong> დაახლოებით ${area} კვ.მ.<br>
             <strong>🎨 არჩეული ფერი:</strong> ${colorName}<br>
-            <strong>💰 სავარაუდო ჯამური ფასი:</strong> $${basePrice.toLocaleString()}<br><br>
+            <strong>💰 ჯამური ფასი:</strong> <span class="result-price">$${basePrice.toLocaleString()}</span><br><br>
             <strong>🏡 შესაძლებლობა და დანიშნულება:</strong><br> ${description}
         `;
-        resultDiv.scrollIntoView({ behavior: 'smooth' });
+        
+        setTimeout(() => {
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
     });
 }

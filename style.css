@@ -3,17 +3,17 @@ body, html {
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     color: white;
     background-color: #04040f;
     overflow-x: hidden;
 }
 
-/* კოსმოსური ფონის მოძრაობა */
+/* კოსმოსური ფონის მოძრაობა (უფრო ნელი და გლუვი) */
 body {
     background: linear-gradient(135deg, #050518, #0a0522, #040c1e, #04040f);
     background-size: 400% 400%;
-    animation: spaceMove 18s ease infinite;
+    animation: spaceMove 22s ease infinite;
 }
 
 @keyframes spaceMove {
@@ -24,17 +24,17 @@ body {
 
 /* კოსმოსური ტალღები */
 .space-waves { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.35; }
-.wave { position: absolute; width: 180%; height: 180%; top: -40%; left: -40%; border-radius: 44%; animation: waveRot 25s linear infinite; }
+.wave { position: absolute; width: 180%; height: 180%; top: -40%; left: -40%; border-radius: 44%; animation: waveRot 30s linear infinite; }
 .wave1 { background: radial-gradient(circle, rgba(0,255,204,0.12) 0%, transparent 65%); }
-.wave2 { background: radial-gradient(circle, rgba(0,163,255,0.12) 0%, transparent 65%); animation-duration: 35s; }
+.wave2 { background: radial-gradient(circle, rgba(0,163,255,0.12) 0%, transparent 65%); animation-duration: 45s; }
 @keyframes waveRot { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 /* მფრინავი კონტეინერები */
-.flying-container { position: fixed; width: 85px; height: 38px; border-radius: 4px; opacity: 0.5; z-index: 0; pointer-events: none; animation: fly 22s linear infinite; }
+.flying-container { position: fixed; width: 85px; height: 38px; border-radius: 4px; opacity: 0.5; z-index: 0; pointer-events: none; animation: fly 26s linear infinite; }
 .flying-container::before { content: ''; position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(0,0,0,0.2) 4px, rgba(0,0,0,0.2) 8px); }
-.fc1 { background: #b03a2e; top: 20%; left: -120px; animation-duration: 16s; }
-.fc2 { background: #1a5276; top: 60%; left: -120px; animation-duration: 25s; animation-delay: 3s; }
-.fc3 { background: #1e8449; top: 80%; left: -120px; animation-duration: 20s; animation-delay: 6s; }
+.fc1 { background: #b03a2e; top: 20%; left: -120px; animation-duration: 20s; }
+.fc2 { background: #1a5276; top: 60%; left: -120px; animation-duration: 30s; animation-delay: 3s; }
+.fc3 { background: #1e8449; top: 80%; left: -120px; animation-duration: 24s; animation-delay: 6s; }
 @keyframes fly { 
     0% { transform: translateX(0) translateY(0) rotate(0deg); left: -120px; }
     50% { transform: translateY(-40px) rotate(30deg); }
@@ -60,7 +60,7 @@ body {
 .logo-text { font-size: 28px; font-weight: 900; letter-spacing: 1px; color: white; text-transform: lowercase; }
 .logo-text .highlight { color: #00ffcc; text-shadow: 0 0 10px rgba(0, 255, 204, 0.6); }
 
-/* ორიგინალური ფანჯრების განლაგება (Grid Workspace) */
+/* ფანჯრების განლაგება */
 .desktop-wrapper {
     position: relative;
     z-index: 1;
@@ -72,7 +72,6 @@ body {
     gap: 30px;
 }
 
-/* ფანჯრების ბაზისური დიზაინი (OS Window style) */
 .window-box {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(12px);
@@ -80,7 +79,7 @@ body {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -94,10 +93,10 @@ body {
 }
 
 .win-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-.win-header h3 { margin: 0; font-size: 15px; font-weight: 600; color: #fff; letter-spacing: 0.5px; }
+.win-header h3 { margin: 0; font-size: 15px; font-weight: 600; color: #fff; }
 .win-body { padding: 22px; }
 
-/* თითოეული ფანჯრის ინდივიდუალური ორიგინალური ნეონის გაფორმება */
+/* ნეონის ჩარჩოები */
 .win-about { border-color: rgba(155, 89, 182, 0.4); }
 .win-about .win-dot { background: #9b59b6; box-shadow: 0 0 8px #9b59b6; }
 .win-about h3 { color: #d2b4de; }
@@ -106,41 +105,30 @@ body {
 .win-repair .win-dot { background: #e67e22; box-shadow: 0 0 8px #e67e22; }
 .win-repair h3 { color: #f5cba7; }
 
-.win-calc { grid-row: span 2; border-color: rgba(0, 255, 204, 0.4); background: rgba(0, 255, 204, 0.01); }
+.win-calc { grid-row: span 2; border-color: rgba(0, 255, 204, 0.4); }
 .win-calc .win-dot { background: #00ffcc; box-shadow: 0 0 8px #00ffcc; }
-.win-calc h3 { color: #00ffcc; text-shadow: 0 0 8px rgba(0,255,204,0.2); }
+.win-calc h3 { color: #00ffcc; }
 
 .win-contact { border-color: rgba(52, 152, 219, 0.4); }
 .win-contact .win-dot { background: #3498db; box-shadow: 0 0 8px #3498db; }
 .win-contact h3 { color: #a9cce3; }
 
-/* ჰოვერ ეფექტი ფანჯრებზე */
-.window-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-}
-.win-calc:hover { border-color: #00ffcc; box-shadow: 0 0 20px rgba(0, 255, 204, 0.15); }
-.win-about:hover { border-color: #9b59b6; box-shadow: 0 0 20px rgba(155, 89, 182, 0.15); }
-.win-repair:hover { border-color: #e67e22; box-shadow: 0 0 20px rgba(230, 126, 34, 0.15); }
-.win-contact:hover { border-color: #3498db; box-shadow: 0 0 20px rgba(52, 152, 219, 0.15); }
+.window-box:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); }
 
-/* ტექსტები და ფორმები */
-p { font-size: 14.5px; line-height: 1.6; color: #d1d1d6; margin: 0; }
+p { font-size: 14.5px; line-height: 1.6; color: #d1d1d6; }
 .form-group { margin-bottom: 20px; }
 label { display: block; margin-bottom: 8px; font-size: 13.5px; color: #a1a1a6; }
 
 select {
     width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px;
-    color: white; font-size: 14.5px; outline: none; transition: 0.3s;
+    color: white; font-size: 14.5px; outline: none;
 }
-select:focus { border-color: #00ffcc; }
 
 .checkbox-group { margin-bottom: 25px; }
-.checkbox-group label { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; color: #e5e5ea; }
+.checkbox-group label { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; }
 .checkbox-group input { margin-right: 12px; width: 18px; height: 18px; accent-color: #00ffcc; }
 
-/* ღილაკი */
 button {
     width: 100%; padding: 14px; background: linear-gradient(135deg, #00ffcc, #00a3ff);
     border: none; border-radius: 8px; color: #04040f; font-size: 15.5px;
@@ -148,15 +136,28 @@ button {
 }
 button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4); }
 
-/* კალკულატორის შედეგი */
-#result { margin-top: 25px; padding: 16px; background: rgba(255, 255, 255, 0.96); color: #111; border-radius: 8px; font-size: 14px; line-height: 1.6; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
-
-/* კონტაქტის ლინკი */
-.phone-link { display: inline-block; margin-top: 10px; font-size: 24px; font-weight: bold; color: #00a3ff; text-decoration: none; text-shadow: 0 0 10px rgba(0, 163, 255, 0.2); transition: 0.3s; }
-.phone-link:hover { color: #00ffcc; transform: scale(1.04); }
-
-/* მობილურის ეკრანებზე მორგება */
-@media (max-width: 800px) {
-    .desktop-wrapper { grid-template-columns: 1fr; }
-    .win-calc { grid-row: auto; }
+/* ახალი ეფექტური ნეონური შედეგის ბლოკის სტილი */
+.neon-result-box {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(4, 4, 15, 0.75);
+    border: 2px solid #00ffcc;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    color: #ffffff;
+    font-size: 14.5px;
+    line-height: 1.7;
+    animation: neonGlow 0.5s ease;
 }
+
+@keyframes neonGlow {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.result-title { color: #00ffcc; font-size: 18px; border-bottom: 1px solid rgba(0, 255, 204, 0.2); padding-bottom: 8px; margin-bottom: 12px; display: block; }
+.result-price { color: #00a3ff; font-size: 20px; font-weight: bold; text-shadow: 0 0 8px rgba(0, 163, 255, 0.4); }
+
+.phone-link { display: inline-block; margin-top: 10px; font-size: 24px; font-weight: bold; color: #00a3ff; text-decoration: none; }
+
+@media (max-width: 800px) { .desktop-wrapper { grid-template-columns: 1fr; } .win-calc { grid-row: auto; } }
