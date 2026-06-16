@@ -3,197 +3,160 @@ body, html {
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     color: white;
-    background-color: #03030d;
+    background-color: #04040f;
     overflow-x: hidden;
 }
 
-/* კოსმოსური ფონის ფერების მუდმივი ნელი ცვალებადობა */
+/* კოსმოსური ფონის მოძრაობა */
 body {
-    background: linear-gradient(125deg, #050515, #0a051c, #050d1a, #03030d);
+    background: linear-gradient(135deg, #050518, #0a0522, #040c1e, #04040f);
     background-size: 400% 400%;
-    animation: spaceGradient 15s ease infinite;
+    animation: spaceMove 18s ease infinite;
 }
 
-@keyframes spaceGradient {
+@keyframes spaceMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* კოსმოსური ნეონური ტალღები ფონად */
-.space-waves {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.4;
+/* კოსმოსური ტალღები */
+.space-waves { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.35; }
+.wave { position: absolute; width: 180%; height: 180%; top: -40%; left: -40%; border-radius: 44%; animation: waveRot 25s linear infinite; }
+.wave1 { background: radial-gradient(circle, rgba(0,255,204,0.12) 0%, transparent 65%); }
+.wave2 { background: radial-gradient(circle, rgba(0,163,255,0.12) 0%, transparent 65%); animation-duration: 35s; }
+@keyframes waveRot { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* მფრინავი კონტეინერები */
+.flying-container { position: fixed; width: 85px; height: 38px; border-radius: 4px; opacity: 0.5; z-index: 0; pointer-events: none; animation: fly 22s linear infinite; }
+.flying-container::before { content: ''; position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(0,0,0,0.2) 4px, rgba(0,0,0,0.2) 8px); }
+.fc1 { background: #b03a2e; top: 20%; left: -120px; animation-duration: 16s; }
+.fc2 { background: #1a5276; top: 60%; left: -120px; animation-duration: 25s; animation-delay: 3s; }
+.fc3 { background: #1e8449; top: 80%; left: -120px; animation-duration: 20s; animation-delay: 6s; }
+@keyframes fly { 
+    0% { transform: translateX(0) translateY(0) rotate(0deg); left: -120px; }
+    50% { transform: translateY(-40px) rotate(30deg); }
+    100% { transform: translateX(calc(100vw + 240px)) translateY(20px) rotate(60deg); left: -120px; }
 }
 
-.wave {
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    border-radius: 43%;
-    animation: waveRotate 20s linear infinite;
+/* ლოგოს ჰედერი */
+.main-header {
+    position: relative;
+    z-index: 2;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: flex-start;
+    background: rgba(4, 4, 15, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.wave1 { background: radial-gradient(circle, rgba(0,255,204,0.1) 0%, transparent 60%); animation-duration: 25s; }
-.wave2 { background: radial-gradient(circle, rgba(0,163,255,0.1) 0%, transparent 60%); animation-duration: 35s; }
-.wave3 { background: radial-gradient(circle, rgba(125,60,152,0.1) 0%, transparent 60%); animation-duration: 45s; }
+.logo-area { display: flex; align-items: center; gap: 12px; }
+.container-logo { font-size: 32px; animation: bounceLogo 3s ease-in-out infinite; }
+@keyframes bounceLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-@keyframes waveRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+.logo-text { font-size: 28px; font-weight: 900; letter-spacing: 1px; color: white; text-transform: lowercase; }
+.logo-text .highlight { color: #00ffcc; text-shadow: 0 0 10px rgba(0, 255, 204, 0.6); }
 
-/* მფრინავი ფერადი საზღვაო კონტეინერები */
-.flying-container {
-    position: fixed;
-    width: 90px;
-    height: 40px;
-    border-radius: 4px;
-    opacity: 0.6;
-    z-index: 0;
-    pointer-events: none;
-    box-shadow: 0 0 15px rgba(255,255,255,0.2);
-    animation: flySpace 20s linear infinite;
-}
-
-.flying-container::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(0,0,0,0.2) 5px, rgba(0,0,0,0.2) 10px);
-}
-
-.fc1 { background: #b03a2e; top: 15%; left: -150px; animation-duration: 18s; animation-delay: 0s; }
-.fc2 { background: #1a5276; top: 45%; left: -150px; animation-duration: 24s; animation-delay: 4s; }
-.fc3 { background: #1e8449; top: 75%; left: -150px; animation-duration: 21s; animation-delay: 8s; }
-.fc4 { background: #d35400; top: 30%; left: -150px; animation-duration: 28s; animation-delay: 2s; }
-
-@keyframes flySpace {
-    0% { transform: translateX(0) translateY(0) rotate(0deg); left: -150px; }
-    50% { transform: translateY(-50px) rotate(45deg); }
-    100% { transform: translateX(calc(100vw + 300px)) translateY(30px) rotate(90deg); left: -150px; }
-}
-
-/* ორი სვეტის განლაგება */
-.wrapper {
+/* ორიგინალური ფანჯრების განლაგება (Grid Workspace) */
+.desktop-wrapper {
     position: relative;
     z-index: 1;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    width: 90%;
-    max-width: 1000px;
-    margin: 50px auto;
-    align-items: start;
+    gap: 30px;
 }
 
-/* მინის ბარათები (Glassmorphism) */
-.card, .calculator-container {
-    background: rgba(255, 255, 255, 0.05);
+/* ფანჯრების ბაზისური დიზაინი (OS Window style) */
+.window-box {
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    transition: 0.3s;
 }
 
-.card:hover, .calculator-container:hover {
-    border-color: rgba(0, 255, 204, 0.3);
-}
-
-.info-sidebar {
+.win-header {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 12px 18px;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-h2, h3 {
-    margin-top: 0;
-    color: #00ffcc;
-    text-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
-}
+.win-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.win-header h3 { margin: 0; font-size: 15px; font-weight: 600; color: #fff; letter-spacing: 0.5px; }
+.win-body { padding: 22px; }
 
-p {
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: #dcdcdc;
-}
+/* თითოეული ფანჯრის ინდივიდუალური ორიგინალური ნეონის გაფორმება */
+.win-about { border-color: rgba(155, 89, 182, 0.4); }
+.win-about .win-dot { background: #9b59b6; box-shadow: 0 0 8px #9b59b6; }
+.win-about h3 { color: #d2b4de; }
 
-.phone-link {
-    display: inline-block;
-    margin-top: 5px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #00a3ff;
-    text-decoration: none;
-    text-shadow: 0 0 8px rgba(0, 163, 255, 0.3);
-    transition: 0.3s;
-}
+.win-repair { border-color: rgba(230, 126, 34, 0.4); }
+.win-repair .win-dot { background: #e67e22; box-shadow: 0 0 8px #e67e22; }
+.win-repair h3 { color: #f5cba7; }
 
-.phone-link:hover {
-    color: #00ffcc;
-    transform: scale(1.05);
-}
+.win-calc { grid-row: span 2; border-color: rgba(0, 255, 204, 0.4); background: rgba(0, 255, 204, 0.01); }
+.win-calc .win-dot { background: #00ffcc; box-shadow: 0 0 8px #00ffcc; }
+.win-calc h3 { color: #00ffcc; text-shadow: 0 0 8px rgba(0,255,204,0.2); }
 
+.win-contact { border-color: rgba(52, 152, 219, 0.4); }
+.win-contact .win-dot { background: #3498db; box-shadow: 0 0 8px #3498db; }
+.win-contact h3 { color: #a9cce3; }
+
+/* ჰოვერ ეფექტი ფანჯრებზე */
+.window-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+.win-calc:hover { border-color: #00ffcc; box-shadow: 0 0 20px rgba(0, 255, 204, 0.15); }
+.win-about:hover { border-color: #9b59b6; box-shadow: 0 0 20px rgba(155, 89, 182, 0.15); }
+.win-repair:hover { border-color: #e67e22; box-shadow: 0 0 20px rgba(230, 126, 34, 0.15); }
+.win-contact:hover { border-color: #3498db; box-shadow: 0 0 20px rgba(52, 152, 219, 0.15); }
+
+/* ტექსტები და ფორმები */
+p { font-size: 14.5px; line-height: 1.6; color: #d1d1d6; margin: 0; }
 .form-group { margin-bottom: 20px; }
-label { display: block; margin-bottom: 8px; font-size: 14px; color: #b5b5b5; }
+label { display: block; margin-bottom: 8px; font-size: 13.5px; color: #a1a1a6; }
 
 select {
-    width: 100%;
-    padding: 12px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    color: white;
-    font-size: 15px;
-    outline: none;
+    width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px;
+    color: white; font-size: 14.5px; outline: none; transition: 0.3s;
 }
+select:focus { border-color: #00ffcc; }
 
 .checkbox-group { margin-bottom: 25px; }
-.checkbox-group label { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; }
+.checkbox-group label { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; color: #e5e5ea; }
 .checkbox-group input { margin-right: 12px; width: 18px; height: 18px; accent-color: #00ffcc; }
 
+/* ღილაკი */
 button {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #00ffcc, #00a3ff);
-    border: none;
-    border-radius: 8px;
-    color: #03030d;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
+    width: 100%; padding: 14px; background: linear-gradient(135deg, #00ffcc, #00a3ff);
+    border: none; border-radius: 8px; color: #04040f; font-size: 15.5px;
+    font-weight: bold; cursor: pointer; transition: 0.3s ease;
 }
+button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4); }
 
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4);
-}
+/* კალკულატორის შედეგი */
+#result { margin-top: 25px; padding: 16px; background: rgba(255, 255, 255, 0.96); color: #111; border-radius: 8px; font-size: 14px; line-height: 1.6; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
 
-#result {
-    margin-top: 25px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.95);
-    color: #111;
-    border-radius: 8px;
-    font-size: 14px;
-    line-height: 1.6;
-}
+/* კონტაქტის ლინკი */
+.phone-link { display: inline-block; margin-top: 10px; font-size: 24px; font-weight: bold; color: #00a3ff; text-decoration: none; text-shadow: 0 0 10px rgba(0, 163, 255, 0.2); transition: 0.3s; }
+.phone-link:hover { color: #00ffcc; transform: scale(1.04); }
 
-@media (max-width: 768px) {
-    .wrapper { grid-template-columns: 1fr; margin: 20px auto; }
+/* მობილურის ეკრანებზე მორგება */
+@media (max-width: 800px) {
+    .desktop-wrapper { grid-template-columns: 1fr; }
+    .win-calc { grid-row: auto; }
 }

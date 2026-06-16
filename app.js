@@ -41,7 +41,7 @@ if (calcButton) {
 
         resultDiv.style.display = "block";
         resultDiv.innerHTML = `
-            <strong style="color:#111; font-size:17px;">📊 გამოთვლის შედეგები:</strong><br><br>
+            <strong style="color:#111; font-size:16px;">📊 გამოთვლის შედეგები:</strong><br><br>
             <strong>📐 ფართობი:</strong> დაახლოებით ${area} კვ.მ.<br>
             <strong>🎨 არჩეული ფერი:</strong> ${colorName}<br>
             <strong>💰 სავარაუდო ჯამური ფასი:</strong> $${basePrice.toLocaleString()}<br><br>
