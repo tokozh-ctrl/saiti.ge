@@ -4,22 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>boxtobox - კოსმოსური კონტეინერები</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- 🎨 ყველა CSS სტილი ჩაშენებულია აქ -->
+    <style>
+        body, html {
+            margin: 0; padding: 0; width: 100%; min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, sans-serif; color: white;
+            background-color: #04040f; overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, #050518, #0a0522, #040c1e, #04040f);
+            background-size: 400% 400%; animation: spaceMove 22s ease infinite;
+        }
+
+        @keyframes spaceMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .space-waves { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.35; }
+        .wave { position: absolute; width: 180%; height: 180%; top: -40%; left: -40%; border-radius: 44%; animation: waveRot 30s linear infinite; }
+        .wave1 { background: radial-gradient(circle, rgba(0,255,204,0.12) 0%, transparent 65%); }
+        .wave2 { background: radial-gradient(circle, rgba(0,163,255,0.12) 0%, transparent 65%); animation-duration: 45s; }
+        @keyframes waveRot { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .flying-container { position: fixed; width: 85px; height: 38px; border-radius: 4px; opacity: 0.5; z-index: 0; pointer-events: none; animation: fly 26s linear infinite; }
+        .flying-container::before { content: ''; position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(0,0,0,0.2) 4px, rgba(0,0,0,0.2) 8px); }
+        .fc1 { background: #b03a2e; top: 20%; left: -120px; animation-duration: 20s; }
+        .fc2 { background: #1a5276; top: 60%; left: -120px; animation-duration: 30s; animation-delay: 3s; }
+        .fc3 { background: #1e8449; top: 80%; left: -120px; animation-duration: 24s; animation-delay: 6s; }
+        @keyframes fly { 
+            0% { transform: translateX(0) translateY(0) rotate(0deg); left: -120px; }
+            50% { transform: translateY(-40px) rotate(30deg); }
+            100% { transform: translateX(calc(100vw + 240px)) translateY(20px) rotate(60deg); left: -120px; }
+        }
+
+        .main-header {
+            position: relative; z-index: 2; padding: 20px 5%; display: flex; justify-content: flex-start;
+            background: rgba(4, 4, 15, 0.6); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .container-logo { font-size: 32px; animation: bounceLogo 3s ease-in-out infinite; }
+        @keyframes bounceLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .logo-text { font-size: 28px; font-weight: 900; color: white; text-transform: lowercase; }
+        .logo-text .highlight { color: #00ffcc; text-shadow: 0 0 10px rgba(0, 255, 204, 0.6); }
+
+        .desktop-wrapper { position: relative; z-index: 1; max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .window-box { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .win-header { background: rgba(0, 0, 0, 0.4); padding: 12px 18px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .win-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .win-header h3 { margin: 0; font-size: 15px; font-weight: 600; color: #fff; }
+        .win-body { padding: 22px; }
+
+        .win-about { border-color: rgba(155, 89, 182, 0.4); }
+        .win-about .win-dot { background: #9b59b6; box-shadow: 0 0 8px #9b59b6; }
+        .win-about h3 { color: #d2b4de; }
+        .win-repair { border-color: rgba(230, 126, 34, 0.4); }
+        .win-repair .win-dot { background: #e67e22; box-shadow: 0 0 8px #e67e22; }
+        .win-repair h3 { color: #f5cba7; }
+        .win-calc { grid-row: span 2; border-color: rgba(0, 255, 204, 0.4); }
+        .win-calc .win-dot { background: #00ffcc; box-shadow: 0 0 8px #00ffcc; }
+        .win-calc h3 { color: #00ffcc; }
+        .win-contact { border-color: rgba(52, 152, 219, 0.4); }
+        .win-contact .win-dot { background: #3498db; box-shadow: 0 0 8px #3498db; }
+        .win-contact h3 { color: #a9cce3; }
+
+        .window-box:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); }
+        p { font-size: 14.5px; line-height: 1.6; color: #d1d1d6; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 13.5px; color: #a1a1a6; }
+
+        select { width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: white; font-size: 14.5px; outline: none; }
+        .checkbox-group { margin-bottom: 25px; }
+        .checkbox-group label { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; }
+        .checkbox-group input { margin-right: 12px; width: 18px; height: 18px; accent-color: #00ffcc; }
+
+        button.calc-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #00ffcc, #00a3ff); border: none; border-radius: 8px; color: #04040f; font-size: 15.5px; font-weight: bold; cursor: pointer; transition: 0.3s ease; }
+        button.calc-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4); }
+
+        .neon-result-box { margin-top: 25px; padding: 20px; background: rgba(4, 4, 15, 0.85); border: 2px solid #00ffcc; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); color: #ffffff; font-size: 14.5px; line-height: 1.7; animation: neonGlow 0.5s ease; }
+        .result-title { color: #00ffcc; font-size: 18px; border-bottom: 1px solid rgba(0, 255, 204, 0.2); padding-bottom: 8px; margin-bottom: 12px; display: block; }
+        .result-price { color: #00ffcc; font-size: 22px; font-weight: bold; text-shadow: 0 0 8px rgba(0, 255, 204, 0.5); }
+        
+        /* WhatsApp ღილაკის სტილი */
+        .whatsapp-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: #25d366; border: none; border-radius: 8px; color: white; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 15px; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+        .whatsapp-btn:hover { background: #20ba5a; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5); }
+
+        .phone-link { display: inline-block; margin-top: 10px; font-size: 24px; font-weight: bold; color: #00a3ff; text-decoration: none; }
+        @media (max-width: 800px) { .desktop-wrapper { grid-template-columns: 1fr; } .win-calc { grid-row: auto; } }
+    </style>
 </head>
 <body>
 
-    <!-- ანიმაციური კოსმოსური ფონი -->
     <div class="space-waves">
         <div class="wave wave1"></div>
         <div class="wave wave2"></div>
     </div>
 
-    <!-- მფრინავი კონტეინერები -->
     <div class="flying-container fc1"></div>
     <div class="flying-container fc2"></div>
     <div class="flying-container fc3"></div>
 
-    <!-- მთავარი ნავიგაციის პანელი (ლოგო) -->
     <header class="main-header">
         <div class="logo-area">
             <span class="container-logo">📦</span>
@@ -27,41 +114,23 @@
         </div>
     </header>
 
-    <!-- ფანჯრების ორიგინალური სამუშაო მაგიდა -->
     <main class="desktop-wrapper">
-        
-        <!-- ფანჯარა 1: ჩვენს შესახებ -->
         <section class="window-box win-about">
-            <div class="win-header">
-                <span class="win-dot"></span>
-                <h3>ℹ️ ჩვენს შესახებ</h3>
-            </div>
-            <div class="win-body">
-                <p>ჩვენ გთავაზობთ უმაღლესი ხარისხის საზღვაო კონტეინერების მოდიფიცირებას, საცხოვრებელ სახლებად გარდაქმნასა და ტრანსპორტირებას მთელი ქვეყნის მასშტაბით.</p>
-            </div>
+            <div class="win-header"><span class="win-dot"></span><h3>ℹ️ ჩვენს შესახებ</h3></div>
+            <div class="win-body"><p>ჩვენ გთავაზობთ უმაღლესი ხარისხის საზღვაო კონტეინერების მოდიფიცირებას, საცხოვრებელ სახლებად გარდაქმნასა და ტრანსპორტირებას მთელი ქვეყნის მასშტაბით.</p></div>
         </section>
 
-        <!-- ფანჯარა 2: რემონტი -->
         <section class="window-box win-repair">
-            <div class="win-header">
-                <span class="win-dot"></span>
-                <h3>🛠️ კონტეინერების რემონტი</h3>
-            </div>
-            <div class="win-body">
-                <p>გთავაზობთ ნებისმიერი სირთულის სარემონტო სამუშაოებს: კონსტრუქციის გამაგრება, ჟანგის დამუშავება, შეღებვა, გადახურვა და თბოიზოლაციის მოწყობა.</p>
-            </div>
+            <div class="win-header"><span class="win-dot"></span><h3>🛠️ კონტეინერების რემონტი</h3></div>
+            <div class="win-body"><p>გთავაზობთ ნებისმიერი სირთულის სარემონტო სამუშაოებს: კონსტრუქციის გამაგრება, ჟანგის დამუშავება, შეღებვა, გადახურვა და თბოიზოლაციის მოწყობა.</p></div>
         </section>
 
-        <!-- ფანჯარა 3: კალკულატორი -->
         <section class="window-box win-calc">
-            <div class="win-header">
-                <span class="win-dot"></span>
-                <h3>📊 ფასის კალკულატორი</h3>
-            </div>
+            <div class="win-header"><span class="win-dot"></span><h3>📊 ფასის კალკულატორი</h3></div>
             <div class="win-body">
                 <div class="form-group">
                     <label for="sizeSelect">შეარჩიეთ კონტეინერის ზომა:</label>
-                    <select id="sizeSelect">
+                    <select id="sizeSelect" onchange="calculateLive()">
                         <option value="10">10 ფუტიანი (მცირე ოფისი / საცავი)</option>
                         <option value="20">20 ფუტიანი (მცირე აგარაკი / კაფე)</option>
                         <option value="40">40 ფუტიანი (საცხოვრებელი სახლი)</option>
@@ -71,7 +140,7 @@
 
                 <div class="form-group">
                     <label for="colorSelect">შეარჩიეთ ფერი:</label>
-                    <select id="colorSelect">
+                    <select id="colorSelect" onchange="calculateLive()">
                         <option value="anthracite">ანტრაციტი (მუქი ნაცრისფერი)</option>
                         <option value="black">შავი მქრქალი</option>
                         <option value="white">თეთრი კლასიკური</option>
@@ -80,35 +149,3 @@
                 </div>
 
                 <div class="checkbox-group">
-                    <label><input type="checkbox" id="insulationCheck"> თბოიზოლაცია (+$500)</label>
-                    <label><input type="checkbox" id="windowsCheck"> კარ-ფანჯარა (+$1,200)</label>
-                    <label><input type="checkbox" id="foundationCheck"> საძირკველი (+$800)</label>
-                    <label><input type="checkbox" id="interiorCheck"> შიდა მოპირკეთება (+$1,500)</label>
-                    <label><input type="checkbox" id="climatCheck"> გათბობა-გაგრილება (+$600)</label>
-                    <label><input type="checkbox" id="bathroomCheck"> სველი წერტილი / აბაზანა (+$1,100)</label>
-                </div>
-
-                <button id="calcBtn">გამოთვლა 🚀</button>
-                
-                <!-- ახალი ნეონური შედეგის ბლოკი -->
-                <div id="result" class="neon-result-box" style="display: none;"></div>
-            </div>
-        </section>
-
-        <!-- ფანჯარა 4: კონტაქტი -->
-        <section class="window-box win-contact">
-            <div class="win-header">
-                <span class="win-dot"></span>
-                <h3>📞 კონტაქტი</h3>
-            </div>
-            <div class="win-body">
-                <p>დაგვიკავშირდით ნებისმიერ დროს ტელეფონზე:</p>
-                <a href="tel:557666211" class="phone-link">557 666 211</a>
-            </div>
-        </section>
-
-    </main>
-
-    <script src="script.js"></script>
-</body>
-</html>
