@@ -3,48 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>საზღვაო კონტეინერების კალკულატორი</title>
+    <title>კონტეინერების სერვისი & კალკულატორი</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- კალკულატორის მთავარი კონტეინერი -->
-    <div class="calculator-container">
-        <h2>🏡 კონტეინერის კალკულატორი</h2>
-        
-        <div class="form-group">
-            <label for="sizeSelect">შეარჩიეთ კონტეინერის ზომა:</label>
-            <select id="sizeSelect">
-                <option value="10">10 ფუტიანი (მცირე ოფისი / საცავი)</option>
-                <option value="20">20 ფუტიანი (მცირე აგარაკი / კაფე)</option>
-                <option value="40">40 ფუტიანი (საცხოვრებელი სახლი)</option>
-                <option value="40hc">40 ფუტიანი High Cube (პრემიუმი)</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="colorSelect">შეარჩიეთ ფერი:</label>
-            <select id="colorSelect">
-                <option value="anthracite">ანტრაციტი (მუქი ნაცრისფერი)</option>
-                <option value="black">შავი მქრქალი</option>
-                <option value="white">თეთრი კლასიკური</option>
-                <option value="wood">ხისფერი ეფექტი</option>
-            </select>
-        </div>
-
-        <div class="checkbox-group">
-            <label><input type="checkbox" id="insulationCheck"> თბოიზოლაცია (+$500)</label>
-            <label><input type="checkbox" id="windowsCheck"> კარ-ფანჯარა (+$1,200)</label>
-            <label><input type="checkbox" id="foundationCheck"> საძირკველი (+$800)</label>
-        </div>
-
-        <button id="calcBtn">გამოთვლა 📊</button>
-        <div id="result" style="display: none;"></div>
+    <!-- მოძრავი კოსმოსური ნეონური ტალღები ფონად -->
+    <div class="space-waves">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
     </div>
 
-    <!-- 3D ძრავი (Three.js) -->
-    <script src="https://cloudflare.com"></script>
-    <!-- თქვენი სკრიპტი -->
+    <!-- მფრინავი ფერადი კონტეინერების იმიტაცია (ანიმაციური ბლოკები) -->
+    <div class="flying-container fc1"></div>
+    <div class="flying-container fc2"></div>
+    <div class="flying-container fc3"></div>
+    <div class="flying-container fc4"></div>
+
+    <!-- საიტის მთავარი კონტენტი -->
+    <div class="wrapper">
+        
+        <!-- მარცხენა მხარე: ინფორმაცია, რემონტი და კონტაქტი -->
+        <div class="info-sidebar">
+            <div class="card about-card">
+                <h3>ℹ️ ჩვენს შესახებ</h3>
+                <p>ჩვენ გთავაზობთ უმაღლესი ხარისხის საზღვაო კონტეინერების მოდიფიცირებას, საცხოვრებელ სახლებად გარდაქმნასა და ტრანსპორტირებას მთელი ქვეყნის მასშტაბით.</p>
+            </div>
+
+            <div class="card repair-card">
+                <h3>🛠️ კონტეინერების რემონტი</h3>
+                <p>გთავაზობთ ნებისმიერი სირთულის სარემონტო სამუშაოებს: კონსტრუქციის გამაგრება, ჟანგის დამუშავება, შეღებვა, გადახურვა და თბოიზოლაციის მოწყობა.</p>
+            </div>
+
+            <div class="card contact-card">
+                <h3>📞 კონტაქტი</h3>
+                <p>დაგვიკავშირდით ნებისმიერ დროს ტელეფონზე:</p>
+                <a href="tel:557666211" class="phone-link">557 666 211</a>
+            </div>
+        </div>
+
+        <!-- მარჯვენა მხარე: კალკულატორი -->
+        <div class="calculator-container">
+            <h2>🏡 ფასის კალკულატორი</h2>
+            
+            <div class="form-group">
+                <label for="sizeSelect">შეარჩიეთ კონტეინერის ზომა:</label>
+                <select id="sizeSelect">
+                    <option value="10">10 ფუტიანი (მცირე ოფისი / საცავი)</option>
+                    <option value="20">20 ფუტიანი (მცირე აგარაკი / კაფე)</option>
+                    <option value="40">40 ფუტიანი (საცხოვრებელი სახლი)</option>
+                    <option value="40hc">40 ფუტიანი High Cube (პრემიუმი)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="colorSelect">შეარჩიეთ ფერი:</label>
+                <select id="colorSelect">
+                    <option value="anthracite">ანტრაციტი (მუქი ნაცრისფერი)</option>
+                    <option value="black">შავი მქრქალი</option>
+                    <option value="white">თეთრი კლასიკური</option>
+                    <option value="wood">ხისფერი ეფექტი</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="insulationCheck"> თბოიზოლაცია (+$500)</label>
+                <label><input type="checkbox" id="windowsCheck"> კარ-ფანჯარა (+$1,200)</label>
+                <label><input type="checkbox" id="foundationCheck"> საძირკველი (+$800)</label>
+            </div>
+
+            <button id="calcBtn">გამოთვლა 📊</button>
+            <div id="result" style="display: none;"></div>
+        </div>
+
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

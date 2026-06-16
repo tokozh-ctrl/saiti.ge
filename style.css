@@ -1,120 +1,194 @@
-/* მთლიანი გვერდის ბაზისური სტილი */
+/* საბაზისო სტილები და ფერების მუდმივი ცვალებადობის ანიმაცია */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #050512; /* ბნელი კოსმოსის სათადარიგო ფერი */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
     color: white;
+    background-color: #03030d;
     overflow-x: hidden;
 }
 
-/* 3D ფონის ბლოკის სტილი (სვამს კოსმოსს ყველაფრის უკან) */
-#canvas-container {
+/* კოსმოსური ფონის ფერების ცვალებადობა */
+body {
+    background: linear-gradient(125deg, #050515, #0a051c, #050d1a, #03030d);
+    background-size: 400% 400%;
+    animation: spaceGradient 15s ease infinite;
+}
+
+@keyframes spaceGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ანიმაციური კოსმოსური ტალღები (CSS ტალღების იმიტაცია) */
+.space-waves {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1; 
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
 }
 
-/* კალკულატორის "მინის" ბარათი (Glassmorphism) */
-.calculator-container {
-    background: rgba(255, 255, 255, 0.06);
+.wave {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    border-radius: 43%;
+    animation: waveRotate 20s linear infinite;
+}
+
+.wave1 { background: radial-gradient(circle, rgba(0,255,204,0.1) 0%, transparent 60%); animation-duration: 25s; }
+.wave2 { background: radial-gradient(circle, rgba(0,163,255,0.1) 0%, transparent 60%); animation-duration: 35s; }
+.wave3 { background: radial-gradient(circle, rgba(125,60,152,0.1) 0%, transparent 60%); animation-duration: 45s; }
+
+@keyframes waveRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* კოსმოსში მფრინავი ფერადი კონტეინერების იმიტაცია */
+.flying-container {
+    position: fixed;
+    width: 90px;
+    height: 40px;
+    border-radius: 4px;
+    opacity: 0.6;
+    z-index: 0;
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    animation: flySpace 20s linear infinite;
+}
+
+/* საზღვაო კონტეინერების ტექსტურის იმიტაცია ხაზებით */
+.flying-container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(0,0,0,0.2) 5px, rgba(0,0,0,0.2) 10px);
+}
+
+.fc1 { background: #b03a2e; top: 15%; left: -150px; animation-duration: 18s; animation-delay: 0s; }
+.fc2 { background: #1a5276; top: 45%; left: -150px; animation-duration: 24s; animation-delay: 4s; }
+.fc3 { background: #1e8449; top: 75%; left: -150px; animation-duration: 21s; animation-delay: 8s; }
+.fc4 { background: #d35400; top: 30%; left: -150px; animation-duration: 28s; animation-delay: 2s; }
+
+@keyframes flySpace {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); left: -150px; }
+    50% { transform: translateY(-50px) rotate(45deg); }
+    100% { transform: translateX(calc(100vw + 300px)) translateY(30px) rotate(90deg); left: -150px; }
+}
+
+/* საიტის სტრუქტურა (Grid ორ სვეტად) */
+.wrapper {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 50px auto;
+    align-items: start;
+}
+
+/* მინის ეფექტის მქონე ბარათები (Glassmorphism) */
+.card, .calculator-container {
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
     border-radius: 16px;
-    width: 90%;
-    max-width: 420px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-    z-index: 1; /* მოაქცევს კალკულატორს 3D-ს ზემოდან */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
 }
 
-h2 {
-    text-align: center;
+.card:hover, .calculator-container:hover {
+    border-color: rgba(0, 255, 204, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 255, 204, 0.1);
+}
+
+.info-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h2, h3 {
     margin-top: 0;
-    margin-bottom: 25px;
     color: #00ffcc;
-    text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
 }
 
-.form-group {
-    margin-bottom: 20px;
+p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #dcdcdc;
 }
 
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #e0e0e0;
+/* კონტაქტის ნომრის სტილი */
+.phone-link {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #00a3ff;
+    text-decoration: none;
+    text-shadow: 0 0 8px rgba(0, 163, 255, 0.3);
+    transition: 0.3s;
 }
 
-/* სელექტორების (Select) სტილი */
+.phone-link:hover {
+    color: #00ffcc;
+    transform: scale(1.05);
+}
+
+/* კალკულატორის ველები */
+.form-group { margin-bottom: 20px; }
+label { display: block; margin-bottom: 8px; font-size: 14px; color: #b5b5b5; }
+
 select {
     width: 100%;
     padding: 12px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     color: white;
     font-size: 15px;
     outline: none;
-    transition: 0.3s;
 }
 
-select:focus {
-    border-color: #00ffcc;
-    box-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
-}
+.checkbox-group { margin-bottom: 25px; }
+.checkbox-group label { display: flex; align-items: center; margin-bottom: 12px; cursor: pointer; }
+.checkbox-group input { margin-right: 12px; width: 18px; height: 18px; accent-color: #00ffcc; }
 
-/* ჩეკბოქსების სტილი */
-.checkbox-group {
-    margin-bottom: 25px;
-}
-
-.checkbox-group label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.checkbox-group input {
-    margin-right: 12px;
-    width: 18px;
-    height: 18px;
-    accent-color: #00ffcc;
-}
-
-/* ღილაკის სტილი */
 button {
     width: 100%;
     padding: 14px;
     background: linear-gradient(135deg, #00ffcc, #00a3ff);
     border: none;
     border-radius: 8px;
-    color: #050512;
+    color: #03030d;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 255, 204, 0.2);
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 255, 204, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4);
 }
 
-/* შედეგის ბლოკის სტილი */
 #result {
     margin-top: 25px;
     padding: 15px;
@@ -123,11 +197,9 @@ button:hover {
     border-radius: 8px;
     font-size: 14px;
     line-height: 1.6;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.4s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* მობილურებისთვის ეკრანის მორგება */
+@media (max-width: 768px) {
+    .wrapper { grid-template-columns: 1fr; margin: 20px auto; }
 }
