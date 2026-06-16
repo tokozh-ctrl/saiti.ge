@@ -1,52 +1,76 @@
-let calcButton = document.getElementById("calcBtn");
-let sizeSelect = document.getElementById("sizeSelect");
-let colorSelect = document.getElementById("colorSelect");
-let insulationCheck = document.getElementById("insulationCheck");
-let windowsCheck = document.getElementById("windowsCheck");
-let foundationCheck = document.getElementById("foundationCheck");
-let resultDiv = document.getElementById("result");
+// გლობალური ცვლადები შერჩეული კონტეინერის მონაცემების შესანახად
+let currentSize = '10';
+let currentBasePrice = 1200;
+let currentColorCode = '#b03a2e';
+let currentColorName = 'წითელი კლასიკური';
 
-if (calcButton) {
-    calcButton.addEventListener("click", function() {
-        let chosenSize = sizeSelect.value;
-        let chosenColor = colorSelect.value;
-        
-        let area = 0;
-        let basePrice = 0;
-        let description = "";
+// ფუნქცია, რომელიც იხსნება კონტეინერზე კლიკისას
+function openConfigurator(size, defaultColorName, defaultColorCode) {
+    currentSize = size;
+    currentColorCode = defaultColorCode;
+    currentColorName = defaultColorName;
 
-        if (chosenSize === "10") {
-            area = 7.5; basePrice = 1200;
-            description = "✔️ იდეალურია: მცირე დაცვის ჯიხურისთვის, მინი-ოფისისთვის ან იარაღების საცავისთვის.";
-        } else if (chosenSize === "20") {
-            area = 15; basePrice = 2500;
-            description = "✔️ იდეალურია: მცირე აგარაკისთვის, კოტეჯისთვის, საოფისე სივრცისთვის ან კაფესთვის.";
-        } else if (chosenSize === "40") {
-            area = 30; basePrice = 5000;
-            description = "✔️ იდეალურია: სრულფასოვანი საცხოვრებელი სახლისთვის (საძინებლით, მისაღებით და სველი წერტილით).";
-        } else if (chosenSize === "40hc") {
-            area = 30; basePrice = 5700;
-            description = "✔️ იდეალურია: მაღალჭერიანი პრემიუმ საცხოვრებლისთვის, სადაც მეტი სივრცისა და კომფორტის შეგრძნებაა.";
-        }
+    // განვსაზღვროთ საბაზისო ფასი ზომის მიხედვით
+    if (size === "10") { currentBasePrice = 1200; document.getElementById('preview-title').innerText = "10 ფუტიანი კონტეინერი"; }
+    else if (size === "20") { currentBasePrice = 2500; document.getElementById('preview-title').innerText = "20 ფუტიანი კონტეინერი"; }
+    else if (size === "40") { currentBasePrice = 5000; document.getElementById('preview-title').innerText = "40 ფუტიანი კონტეინერი"; }
+    else if (size === "40hc") { currentBasePrice = 5700; document.getElementById('preview-title').innerText = "40 HC კონტეინერი"; }
 
-        let colorName = "";
-        if (chosenColor === "anthracite") colorName = "ანტრაციტი (მუქი ნაცრისფერი)";
-        else if (chosenColor === "black") colorName = "შავი მქრქალი";
-        else if (chosenColor === "white") colorName = "თეთრი კლასიკური";
-        else if (chosenColor === "wood") { basePrice += 400; colorName = "ხისფერი ეფექტი (პრემიუმი, +$400)"; }
+    // ჩავრთოთ გვერდების გადართვის იმიტაცია (ჰაიდ/შოუ)
+    document.getElementById('main-view').style.display = 'none';
+    document.getElementById('configurator-view').style.display = 'block';
 
-        if (insulationCheck.checked) basePrice += 500;
-        if (windowsCheck.checked) basePrice += 1200;
-        if (foundationCheck.checked) basePrice += 800;
+    // ჩავტვირთოთ საწყისი ვიზუალი და ფასი
+    changeLiveColor(currentColorCode, currentColorName);
+    resetCheckboxes();
+    updateLivePrice();
+}
 
-        resultDiv.style.display = "block";
-        resultDiv.innerHTML = `
-            <strong style="color:#111; font-size:17px;">📊 გამოთვლის შედეგები:</strong><br><br>
-            <strong>📐 ფართობი:</strong> დაახლოებით ${area} კვ.მ.<br>
-            <strong>🎨 არჩეული ფერი:</strong> ${colorName}<br>
-            <strong>💰 სავარაუდო ჯამური ფასი:</strong> $${basePrice.toLocaleString()}<br><br>
-            <strong>🏡 შესაძლებლობა და დანიშნულება:</strong><br> ${description}
-        `;
-        resultDiv.scrollIntoView({ behavior: 'smooth' });
-    });
+// უკან დაბრუნება მთავარ გვერდზე
+function backToMain() {
+    document.getElementById('configurator-view').style.display = 'none';
+    document.getElementById('main-view').style.display = 'block';
+}
+
+// ფერის ლაივ შეცვლა პრევიუ ბლოკში
+function changeLiveColor(colorCode, colorName) {
+    currentColorCode = colorCode;
+    currentColorName = colorName;
+    
+    // ვცვლით ბლოკის ფონს რეალურ დროში
+    const previewBox = document.getElementById('preview-box');
+    if (previewBox) {
+        previewBox.style.backgroundColor = colorCode;
+    }
+    
+    // ვცვლით ტექსტს
+    document.getElementById('current-color-name').innerText = colorName;
+}
+
+// ჩეკბოქსების განულება ახალი კონტეინერის არჩევისას
+function resetCheckboxes() {
+    document.getElementById('insulation').checked = false;
+    document.getElementById('windows').checked = false;
+    document.getElementById('foundation').checked = false;
+    document.getElementById('roofing').checked = false;
+    document.getElementById('electrical').checked = false;
+}
+
+// ფასის ლაივ კალკულაცია კომპონენტების მიხედვით
+function updateLivePrice() {
+    let totalPrice = currentBasePrice;
+
+    if (document.getElementById('insulation').checked) totalPrice += 500;
+    if (document.getElementById('windows').checked) totalPrice += 1200;
+    if (document.getElementById('foundation').checked) totalPrice += 800;
+    if (document.getElementById('roofing').checked) totalPrice += 950;
+    if (document.getElementById('electrical').checked) totalPrice += 450;
+
+    // გამოვსახოთ ფასი
+    document.getElementById('live-total-price').innerText = `$${totalPrice.toLocaleString()}`;
+}
+
+// შეკვეთის ღილაკი
+function orderContainer() {
+    alert(`მადლობა! თქვენ აირჩიეთ ${currentSize} ფუტიანი კონტეინერი ფერით: "${currentColorName}". დეტალების დასაზუსტებლად დაგვიკავშირდით ნომერზე: 557 666 211`);
 }
