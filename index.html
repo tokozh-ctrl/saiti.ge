@@ -12,7 +12,6 @@
     <div class="calculator-container">
         <h2>🏡 კონტეინერის კალკულატორი</h2>
         
-        <!-- ზომის არჩევა -->
         <div class="form-group">
             <label for="sizeSelect">შეარჩიეთ კონტეინერის ზომა:</label>
             <select id="sizeSelect">
@@ -23,7 +22,6 @@
             </select>
         </div>
 
-        <!-- ფერის არჩევა -->
         <div class="form-group">
             <label for="colorSelect">შეარჩიეთ ფერი:</label>
             <select id="colorSelect">
@@ -34,27 +32,19 @@
             </select>
         </div>
 
-        <!-- დამატებითი ოფციები -->
         <div class="checkbox-group">
-            <label>
-                <input type="checkbox" id="insulationCheck"> თბოიზოლაცია (+$500)
-            </label>
-            <label>
-                <input type="checkbox" id="windowsCheck"> კარ-ფანჯარა (+$1,200)
-            </label>
-            <label>
-                <input type="checkbox" id="foundationCheck"> საძირკველი (+$800)
-            </label>
+            <label><input type="checkbox" id="insulationCheck"> თბოიზოლაცია (+$500)</label>
+            <label><input type="checkbox" id="windowsCheck"> კარ-ფანჯარა (+$1,200)</label>
+            <label><input type="checkbox" id="foundationCheck"> საძირკველი (+$800)</label>
         </div>
 
-        <!-- გამოთვლის ღილაკი -->
         <button id="calcBtn">გამოთვლა 📊</button>
-
-        <!-- შედეგის ჩვენების ბლოკი -->
         <div id="result" style="display: none;"></div>
     </div>
 
+    <!-- 3D ძრავი (Three.js) -->
+    <script src="https://cloudflare.com"></script>
+    <!-- თქვენი სკრიპტი -->
     <script src="script.js"></script>
 </body>
 </html>
-
